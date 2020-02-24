@@ -7,6 +7,13 @@ public class Node {
     private Node left;
     private Node right;
 
+    public Node(Node parent, Object element, Node left, Node right) {
+        this.parent = parent;
+        this.element = element;
+        this.left = left;
+        this.right = right;
+    }
+
     public Node getParent() {
         return parent;
     }
