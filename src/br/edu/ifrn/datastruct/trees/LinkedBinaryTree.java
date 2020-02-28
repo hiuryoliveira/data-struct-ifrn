@@ -32,10 +32,11 @@ public class LinkedBinaryTree<E> implements BinaryTree<E> {
      * @throws InvalidNodeException
      */
     protected void preOrder(Node node) throws InvalidNodeException {
-        checkNode(node);
-        System.out.println(node.getElement());
-        preOrder(node.getLeft());
-        preOrder(node.getRight());
+        if (node != null) {
+            System.out.println(node.getElement());
+            preOrder(node.getLeft());
+            preOrder(node.getRight());
+        }
     }
 
     /**
@@ -43,10 +44,11 @@ public class LinkedBinaryTree<E> implements BinaryTree<E> {
      * @throws InvalidNodeException
      */
     protected void posOrder(Node node) throws InvalidNodeException {
-        checkNode(node);
-        posOrder(node.getLeft());
-        posOrder(node.getRight());
-        System.out.println(node.getElement());
+        if (node != null) {
+            posOrder(node.getLeft());
+            posOrder(node.getRight());
+            System.out.println(node.getElement());
+        }
     }
 
     /**
@@ -54,10 +56,11 @@ public class LinkedBinaryTree<E> implements BinaryTree<E> {
      * @throws InvalidNodeException
      */
     protected void inOrder(Node node) throws InvalidNodeException {
-        checkNode(node);
-        inOrder(node.getLeft());
-        System.out.println(node.getElement());
-        inOrder(node.getRight());
+        if (node != null) {
+            inOrder(node.getLeft());
+            System.out.println(node.getElement());
+            inOrder(node.getRight());
+        }
     }
 
     /**
@@ -142,6 +145,7 @@ public class LinkedBinaryTree<E> implements BinaryTree<E> {
         if (hasRight(node)) {
             throw new NodeHasChildrenExecption("They already have a right child.");
         }
+        node.setRight(w);
         size++;
         return w;
     }
@@ -238,13 +242,15 @@ public class LinkedBinaryTree<E> implements BinaryTree<E> {
 
     @Override
     public boolean hasLeft(Node v) throws InvalidNodeException {
-        Node leftNode = checkNode(v);
+        Node vv = checkNode(v);
+        Node leftNode = vv.getLeft();
         return (leftNode != null);
     }
 
     @Override
     public boolean hasRight(Node v) throws InvalidNodeException {
-        Node rightNode = checkNode(v);
+        Node vv = checkNode(v);
+        Node rightNode = vv.getRight();
         return (rightNode != null);
     }
 
