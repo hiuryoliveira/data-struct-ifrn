@@ -2,6 +2,9 @@ package br.edu.ifrn.datastruct.trees;
 
 public class BSTree extends LinkedBinaryTree {
 
+    private int[][] m;
+    private int count = 0;
+
     public BSTree() {
         new LinkedBinaryTree();
     }
@@ -89,13 +92,6 @@ public class BSTree extends LinkedBinaryTree {
     }
 
     /**
-     * Exibindo a árvore de maneira de que possamos ver os elementos dentro da árvore.
-     */
-    public void drawTree() {
-        // ...
-    }
-
-    /**
      * Buscar chave dentro da árvore.
      *
      * @param v
@@ -109,5 +105,45 @@ public class BSTree extends LinkedBinaryTree {
             if (hasRight(v)) return search(v.getRight(), key);
         }
         return v;
+    }
+
+
+    /**
+     * Exibindo a árvore de maneira de que possamos ver os elementos dentro da árvore.
+     */
+    public void drawTree(BSTree t) throws EmptyTreeException, BoundaryViolationException, InvalidNodeException {
+        System.out.println("-----------------");
+        System.out.println("Imprimindo árvore");
+
+        // Tamanho da matriz.
+        int size = t.size();
+        int h = t.height(t, t.root()) + 1;
+        m = new int[h][size];
+
+        // Adicionando método.
+        inOrderDrawTree(t, t.root());
+
+        // Percorrer matriz.
+        for (int i = 0; i < h; i++) {
+            for (int j = 0; j < size; j++) {
+                if (m[i][j] != 0) {
+                    System.out.print(m[i][j] + "\t");
+                } else {
+                    System.out.print("\t");
+                }
+            }
+            System.out.print("\n");
+        }
+
+        System.out.println("-----------------");
+    }
+
+    public void inOrderDrawTree(BSTree t, Node node) throws BoundaryViolationException, InvalidNodeException, EmptyTreeException {
+        if (node != null) {
+            inOrderDrawTree(t, node.getLeft());
+            // m[t.height(t, node)][t.depth(t, node)] = (int) node.getElement();
+            m[t.depth(t, node)][count++] = (int) node.getElement();
+            inOrderDrawTree(t, node.getRight());
+        }
     }
 }

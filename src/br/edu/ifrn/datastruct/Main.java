@@ -4,7 +4,8 @@ import br.edu.ifrn.datastruct.trees.*;
 
 public class Main {
 
-    public static void main(String[] args) throws EmptyTreeException, NodeHasChildrenExecption, TreeIsNotEmptyException, InvalidNodeException {
+    private int[][] m;
+    public static void main(String[] args) throws EmptyTreeException, NodeHasChildrenExecption, TreeIsNotEmptyException, InvalidNodeException, BoundaryViolationException {
         // Inicializando a árvore.
         BSTree t = new BSTree();
         t.insert(10);
@@ -15,12 +16,10 @@ public class Main {
         t.insert(13);
         t.insert(9);
         System.out.println("Size after four inserts: " + t.size());
-        t.remove(13);
-        System.out.println("Size before first removed element: " + t.size());
-        t.insert(13);
         t.insert(8);
         t.insert(7);
         t.insert(14);
+        t.insert(11);
 
         // Exibindo por ordenação.
         System.out.println("Show inOrder:");
@@ -37,5 +36,8 @@ public class Main {
         // Máximo e mínimo.
         System.out.println("Máximo: " + t.max().getElement());
         System.out.println("Mínimo: " + t.min().getElement());
+
+        // Exibindo árvore.
+        t.drawTree(t);
     }
 }

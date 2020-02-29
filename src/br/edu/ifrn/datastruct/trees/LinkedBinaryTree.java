@@ -73,7 +73,7 @@ public class LinkedBinaryTree<E> implements BinaryTree<E> {
      * @throws InvalidNodeException
      * @throws BoundaryViolationException
      */
-    protected int depth(Tree<E> t, Node v) throws EmptyTreeException, InvalidNodeException, BoundaryViolationException {
+    public int depth(Tree<E> t, Node v) throws EmptyTreeException, InvalidNodeException, BoundaryViolationException {
         if (t.isRoot(v))
             return 0;
         return 1 + depth(t, t.parent(v));
@@ -84,7 +84,7 @@ public class LinkedBinaryTree<E> implements BinaryTree<E> {
      * @param v
      * @return
      */
-    protected int height(Tree<E> t, Node v) throws InvalidNodeException, BoundaryViolationException {
+    public int height(Tree<E> t, Node v) throws InvalidNodeException, BoundaryViolationException {
         if (t.isExternal(v))
             return 0;
         int h = 0;
