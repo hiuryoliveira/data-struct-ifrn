@@ -2,7 +2,7 @@ package br.edu.ifrn.datastruct.trees;
 
 public class BSTree extends LinkedBinaryTree {
 
-    private int[][] m;
+    private int[][] matrixTreeToDraw;
     private int count = 0;
 
     public BSTree() {
@@ -55,7 +55,7 @@ public class BSTree extends LinkedBinaryTree {
 
             while (true) {
                 before = current;
-                if (((Integer) key).intValue() <= ((Integer) current.getElement()).intValue()) {
+                if ((Integer) key <= (Integer) current.getElement()) {
                     current = current.getLeft();
                     if (current == null) {
                         return insertLeft(before, key);
@@ -99,7 +99,7 @@ public class BSTree extends LinkedBinaryTree {
      * @return
      */
     private Node search(Node v, Object key) throws InvalidNodeException {
-        if (((Integer) v.getElement()).intValue() < ((Integer) key).intValue()) {
+        if ((Integer) v.getElement() < (Integer) key) {
             if (hasLeft(v)) return search(v.getLeft(), key);
         } else {
             if (hasRight(v)) return search(v.getRight(), key);
@@ -113,12 +113,12 @@ public class BSTree extends LinkedBinaryTree {
      */
     public void drawTree(BSTree t) throws EmptyTreeException, BoundaryViolationException, InvalidNodeException {
         System.out.println("-----------------");
-        System.out.println("Imprimindo árvore");
+        System.out.println("Printing tree");
 
         // Tamanho da matriz.
         int size = t.size();
         int h = t.height(t, t.root()) + 1;
-        m = new int[h][size];
+        matrixTreeToDraw = new int[h][size];
 
         // Adicionando método.
         inOrderDrawTree(t, t.root());
@@ -126,8 +126,8 @@ public class BSTree extends LinkedBinaryTree {
         // Percorrer matriz.
         for (int i = 0; i < h; i++) {
             for (int j = 0; j < size; j++) {
-                if (m[i][j] != 0) {
-                    System.out.print(m[i][j] + "\t");
+                if (matrixTreeToDraw[i][j] != 0) {
+                    System.out.print(matrixTreeToDraw[i][j] + "\t");
                 } else {
                     System.out.print("\t");
                 }
@@ -138,12 +138,11 @@ public class BSTree extends LinkedBinaryTree {
         System.out.println("-----------------");
     }
 
-    public void inOrderDrawTree(BSTree t, Node node) throws BoundaryViolationException, InvalidNodeException, EmptyTreeException {
+    public void inOrderDrawTree(BSTree tree, Node node) throws BoundaryViolationException, InvalidNodeException, EmptyTreeException {
         if (node != null) {
-            inOrderDrawTree(t, node.getLeft());
-            // m[t.height(t, node)][t.depth(t, node)] = (int) node.getElement();
-            m[t.depth(t, node)][count++] = (int) node.getElement();
-            inOrderDrawTree(t, node.getRight());
+            inOrderDrawTree(tree, node.getLeft());
+            matrixTreeToDraw[tree.depth(tree, node)][count++] = (int) node.getElement();
+            inOrderDrawTree(tree, node.getRight());
         }
     }
 }
