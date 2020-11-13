@@ -1,4 +1,4 @@
-package br.edu.ifrn.datastruct.trees;
+package br.edu.ifrn.datastructure.trees;
 
 public interface BinaryTree<E> extends Tree<E> {
 

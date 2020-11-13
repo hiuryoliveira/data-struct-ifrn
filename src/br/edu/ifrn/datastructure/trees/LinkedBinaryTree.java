@@ -1,4 +1,4 @@
-package br.edu.ifrn.datastruct.trees;
+package br.edu.ifrn.datastructure.trees;
 
 import java.util.ArrayList;
 import java.util.Iterator;
